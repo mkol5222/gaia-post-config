@@ -37,7 +37,6 @@ run_only_once() {
 
 
 main() {
-    parse_args "$@"
     create_log_file
     print_info "Test info message"
 

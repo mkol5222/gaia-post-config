@@ -1,6 +1,6 @@
 # GaiaOS cloud post-config script
 
-## Discussion
+## Problem to address
 
 Check Point GaiaOS booystrap script for cloud-init (Check Point's cloud config)
 e.g.
@@ -14,9 +14,14 @@ with code to be run post-configuration on fiest reboot of VM.
 
 ## Usage
 
+This is how to produce bootstrap script command to seed and register post-config actions:
+
 ```bash
 CODE=$(cat ./post-config.sh | bzip2 -c | base64 -w 0)
 echo $CODE
 
+cat << EOF
+echo "$CODE" | base64 -d | bzip2 -cd | tee /tmp/post-config.sh | sh
+EOF
 ```
 
