@@ -28,11 +28,13 @@ run_only_once() {
     if [ ! -f  $postconfigflagfile ]; then 
         # Code to run only on the first boot 
         # ... 
-        print_info "Running only once $(date)"
+        echo "Running only once $(date)" >> /var/log/run_once.log
         
         # Create the flag file to indicate that the code has been executed 
         touch $postconfigflagfile
     fi
+
+    echo "Running on each boot $(date)" >> /var/log/run_on_boot.log
 }
 
 
